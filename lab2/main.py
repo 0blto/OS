@@ -2,7 +2,6 @@ import lru
 import fifo
 import optimal
 
-# HEEE'S BAAACK
 
 SHOTS_NUMBER = 4
 EXTENDED_SHOTS_NUMBER = SHOTS_NUMBER * 2
@@ -25,31 +24,30 @@ optimal_reduced = optimal.manage(pages, REDUCED_SHOTS_NUMBER)
 print('FIFO\n')
 print(fifo_default['table'])
 print('\n')
-print('Replaces number: ', fifo_default['replaces'])
-print('Replaces number with //2 shots: ', fifo_reduced['replaces'])
-print('Replaces number with x2 shots: ', fifo_extended['replaces'])
+print('Число замен: ', fifo_default['replaces'])
+print('Число замен при //2 кадрах: ', fifo_reduced['replaces'])
+print('Число замен при x2 кадрах: ', fifo_extended['replaces'])
 print('\n')
 
 print('LRU\n')
 print(lru_default['table'])
 print('\n')
-print('Replaces number: ', lru_default['replaces'])
-print('Replaces number with //2 shots: ', lru_reduced['replaces'])
-print('Replaces number with x2 shots: ', lru_extended['replaces'])
+print('Число замен: ', lru_default['replaces'])
+print('Число замен при //2 кадрах: ', lru_reduced['replaces'])
+print('Число замен при x2 кадрах: ', lru_extended['replaces'])
 print('\n')
 
 print('OPTIMAL\n')
 print(optimal_default['table'])
 print('\n')
-print('Replaces number: ', optimal_default['replaces'])
-print('Replaces number with //2 shots: ', optimal_reduced['replaces'])
-print('Replaces number with x2 shots: ', optimal_extended['replaces'])
+print('Число замен: ', optimal_default['replaces'])
+print('Число замен при //2 кадрах: ', optimal_reduced['replaces'])
+print('Число замен при x2 кадрах: ', optimal_extended['replaces'])
 print('\n')
 
 total_requests = len(pages)
-print('Reducing cache misses to 5% with optimal algorithm')
-print('Total requests pages: ', total_requests)
 for i in range(2, len(pages)):
     current_percent = optimal.manage(pages, i)['replaces']/total_requests*100
-    print("Cash misses percent with {0} shots: {1:2.2f}%".format(i, current_percent))
-    if current_percent <= 5: break
+    if current_percent <= 5:
+        print("Замен страниц при {0} кадрах оптимальным алгоритмом: {1:2.2f}%".format(i, current_percent))
+        break

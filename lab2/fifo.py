@@ -5,12 +5,12 @@ from prettytable import PrettyTable
 def manage(pages, shots_number):
     replaces_number = 0
     output = PrettyTable()
-    field_names = ['shot ' + str(i + 1) for i in range(shots_number)]
+    field_names = ['кадр ' + str(i + 1) for i in range(shots_number)]
     output.field_names = field_names
     state = []
     fifo = [i for i in range(shots_number)]
     for i in range(len(pages)):
-        if i != 0: output.add_row(state + [0] * (shots_number - len(state)))
+        if i != 0: output.add_row(state + [''] * (shots_number - len(state)))
         if pages[i] in state: continue
         if len(state) < shots_number: state.append(pages[i]); continue
         replaces_number += 1
